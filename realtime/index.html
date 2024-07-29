@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Real-time Character Counter</h1>
+        <textarea id="text-input" placeholder="Please write your text here..."></textarea>
+        <div class="counter">
+            <span id="total-chars">Total Characters: 0</span>
+            <span id="remaining-chars">Remaining: 50</span>
+        </div>
+    </div>
+
+    <script>
+        const textInput = document.getElementById('text-input');
+        const totalChars = document.getElementById('total-chars');
+        const remainingChars = document.getElementById('remaining-chars');
+        const maxChars = 50;
+
+        textInput.addEventListener('input', updateCounter);
+
+        function updateCounter() {
+            const charCount = textInput.value.length;
+            const remaining = maxChars - charCount;
+
+            totalChars.textContent = `Total Characters: ${charCount}`;
+            remainingChars.textContent = `Remaining: ${remaining}`;
+
+            if (remaining < 0) {
+                remainingChars.style.color = 'red';
+                textInput.value = textInput.value.slice(0, maxChars);
+            } else {
+                remainingChars.style.color = '#333';
+            }
+        }
+    </script>
+</body>
+</html>
